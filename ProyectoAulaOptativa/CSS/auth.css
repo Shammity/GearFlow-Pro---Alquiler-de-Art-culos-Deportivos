@@ -9,7 +9,6 @@
 }
 
 body {
-    /* Fondo con degradado radial profundo */
     background: #171742;
     background: linear-gradient(340deg,rgba(23, 23, 66, 1) 0%, rgba(31, 31, 84, 1) 14%, rgba(19, 39, 112, 1) 31%, rgba(0, 66, 158, 1) 51%, rgba(19, 39, 112, 1) 72%, rgba(31, 31, 84, 1) 87%, rgba(23, 23, 66, 1) 100%);
     min-height: 100vh;
@@ -27,7 +26,6 @@ main {
     width: 90%;
 }
 
-/* --- SECCIÓN DE INFORMACIÓN (IZQUIERDA) --- */
 .info-section {
     flex: 1;
 }
@@ -127,7 +125,6 @@ main {
     margin-bottom: 8px;
 }
 
-/* Contenedor para etiqueta Contraseña + Link */
 .input-group:nth-of-type(2) {
     flex-direction: row;
     justify-content: space-between;
@@ -158,11 +155,11 @@ main {
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
 }
 
 .btn-enviar:hover {
     background-color: #1e293b;
+    transition: background 0.3s;
 }
 
 .out-login {
@@ -178,7 +175,6 @@ main {
     margin-left: 5px;
 }
 
-/* --- CREDENCIALES DEMO --- */
 .demo-credentials {
     margin-top: 25px;
     padding-top: 20px;
