@@ -1,0 +1,205 @@
+/* Documento para la configuración de todos los elementos predeterminados */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    /* Fondo con degradado radial profundo */
+    background: #171742;
+    background: linear-gradient(340deg,rgba(23, 23, 66, 1) 0%, rgba(31, 31, 84, 1) 14%, rgba(19, 39, 112, 1) 31%, rgba(0, 66, 158, 1) 51%, rgba(19, 39, 112, 1) 72%, rgba(31, 31, 84, 1) 87%, rgba(23, 23, 66, 1) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+main {
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    max-width: 1000px;
+    width: 90%;
+}
+
+/* --- SECCIÓN DE INFORMACIÓN (IZQUIERDA) --- */
+.info-section {
+    flex: 1;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.logo-icon {
+    background-color: #3b82f6;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.brand h1 {
+    font-size: 28px;
+    font-weight: 1000;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature-item .icon {
+    background: rgba(255, 255, 255, 0.1);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+.feature-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.feature-item p {
+    font-size: 13px;
+    color: #cbd5e1;
+    margin-top: 2px;
+}
+
+.form-login {
+    background-color: white;
+    color: #1e293b;
+    padding: 40px;
+    border-radius: 12px;
+    width: 420px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.title-login {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.form-login > p {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Contenedor para etiqueta Contraseña + Link */
+.input-group:nth-of-type(2) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-password {
+    font-size: 12px;
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.input-login {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background-color: #f8fafc;
+    margin-bottom: 15px;
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 12px;
+    background-color: #020617;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #1e293b;
+}
+
+.out-login {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.out-login a {
+    color: #3b82f6;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+/* --- CREDENCIALES DEMO --- */
+.demo-credentials {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.demo-credentials > p {
+    font-size: 11px;
+    color: #94a3b8;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background-color: #f8fafc;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #475569;
+}

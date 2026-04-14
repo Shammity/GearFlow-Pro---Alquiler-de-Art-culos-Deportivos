@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GearFlow Pro - Iniciar Sesión</title>
+    <meta name="description" content="Sistema de Tickets para Inventario">
+    <meta name="keywords" content="Tickets, Inventario, Sistema">
+    <meta name="author" content="Shanya Herrera Rubio">
+    <link rel="Shortcut icon" href="img/icon.png">
+    <link rel="icon" type="image/png" href="img/icon.png?v=2">
+    <link rel="stylesheet" href="../../css/auth.css" type="text/css">
+    <link rel="stylesheet" href="css/mediaqueryes.css" type="text/css">
+</head>
+<body>
+    <main>
+        <div class="info-section">
+            <div class="brand">
+                <div class="logo-icon"></div>
+                    <div>
+                        <h1><strong>GearFlow Pro</strong></h1>
+                        <p class="subtitle">Sistema Profesional de Gestión Deportiva</p>
+                    </div>
+                </div>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon">📊</span>
+                        <div>
+                            <h3>Dashboard Avanzado</h3>
+                            <p>Visualiza métricas en tiempo real con gráficos interactivos</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">📦</span>
+                        <div>
+                            <h3>Inventario Inteligente</h3>
+                            <p>Gestiona todo tu equipamiento deportivo en un solo lugar</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🎫</span>
+                        <div>
+                            <h3>Sistema de Tickets</h3>
+                            <p>Control total de préstamos y devoluciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form action="" class="form-login" method="post">
+            <h1 class="title-login">Iniciar Sesión</h1>
+            <p>Ingresa tus credenciales para acceder al sistema</p>
+                <div class="input-group">    
+                    <label for="email">Email</label>
+                    <input id="email" class="input-login" type="email" placeholder="Tu@email.com" maxlength="50" minlength="4" title="Introduzca su correo electrónico" pattern="[a-zA-Z0-9]+([.][a-zA-Z0-9_]+)@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)[.][a-zA-Z]{1,5}" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <a href="" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    </label>
+                </div>
+                <input id="password" class="input-login" type="password" placeholder="••••••••" maxlength="25" minlength="8" title="Introduzca su contraseña" pattern="{8,25}" required >
+            <input class="btn-enviar" type="submit" value="Iniciar Sesión">
+            <div class="auth-card">
+            <div class="out-login">
+                <p>¿No tienes cuenta?<a href="">Regístrate aquí</a></p>
+            </div>
+            <div class="demo-credentials">
+                <p>Credenciales de demostración:</p>
+                <div class="demo-grid">
+                    <div>
+                        <strong>Admin:</strong><br>
+                        admin@gearflow.com<br>
+                        admin123
+                    </div>
+                    <div>
+                        <strong>Usuario:</strong><br>
+                        demo@gearflow.com<br>
+                        demo123
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </main>
+</body>
+</html>
