@@ -1,7 +1,3 @@
-/* ============================================
-   PRINCIPAL STYLESHEET - GearFlow Pro Landing
-   ============================================ */
-
 * {
     margin: 0;
     padding: 0;
@@ -24,10 +20,6 @@
     --text-dark: #0f172a;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--light);
@@ -35,10 +27,6 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 }
-
-/* ============================================
-   HEADER & NAVIGATION
-   ============================================ */
 
 .header {
     background-color: var(--light);
@@ -129,10 +117,6 @@ body {
     background-color: var(--primary-dark);
 }
 
-/* ============================================
-   HERO SECTION
-   ============================================ */
-
 .hero {
     max-width: 1400px;
     margin: 0 auto;
@@ -192,10 +176,6 @@ body {
     opacity: 0.2;
 }
 
-/* ============================================
-   FEATURES SECTION
-   ============================================ */
-
 .features {
     background-color: var(--light-gray);
     padding: 80px 32px;
@@ -251,10 +231,6 @@ body {
     font-size: 14px;
     line-height: 1.6;
 }
-
-/* ============================================
-   PRODUCTS SECTION
-   ============================================ */
 
 .products {
     max-width: 1400px;
@@ -354,10 +330,6 @@ body {
     color: white;
 }
 
-/* ============================================
-   HOW IT WORKS SECTION
-   ============================================ */
-
 .how-works {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     padding: 80px 32px;
@@ -407,10 +379,6 @@ body {
     line-height: 1.6;
 }
 
-/* ============================================
-   STATS SECTION
-   ============================================ */
-
 .stats {
     max-width: 1400px;
     margin: 0 auto;
@@ -441,10 +409,6 @@ body {
     font-weight: 600;
 }
 
-/* ============================================
-   CTA SECTION
-   ============================================ */
-
 .cta {
     background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
     padding: 80px 32px;
@@ -472,10 +436,6 @@ body {
 .cta .btn-primary:hover {
     background-color: var(--light);
 }
-
-/* ============================================
-   FOOTER
-   ============================================ */
 
 .footer {
     background-color: var(--text-dark);
@@ -555,10 +515,6 @@ body {
     color: rgba(255, 255, 255, 0.5);
     font-size: 13px;
 }
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
 
 @media (max-width: 1024px) {
     .navbar-container {
