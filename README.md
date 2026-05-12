@@ -10,9 +10,7 @@
 **GearFlow Pro** es un sistema profesional de gestión de artículos deportivos que permite:
 
 - ✅ Gestión de inventario (catálogo de equipamiento)
-- ✅ Sistema de tickets para préstamo y devolución
-- ✅ Control de usuarios (Administrador y Cliente)
-- ✅ Dashboard con estadísticas en tiempo real
+- ✅ Sistema de tickets para préstamo
 
 ## 🚀 Inicio Rápido
 
@@ -44,16 +42,16 @@ Luego abre tu navegador en **http://localhost:5000**
 ```
 Email: admin@gearflow.com
 Contraseña: admin123
-Rol: Administrador
-Acceso: /admin/dashboard
+Rol: Cliente/Administrador
+Acceso: /admin/dashboard & /admin/dashboard
 ```
 
 ### Usuario2
 ```
 Email: demo@gearflow.com
 Contraseña: demo123
-Rol: Cliente
-Acceso: /listar_productos
+Rol: Cliente/Administrador
+Acceso: /listar_productos & /admin/dashboard
 ```
 
 ## 📍 Estructura de Rutas
@@ -64,7 +62,6 @@ GET  /auth/login              → Formulario de login
 POST /auth/login              → Procesar login
 GET  /auth/registro           → Formulario de registro
 POST /auth/registro           → Procesar registro
-GET  /auth/forgot-password    → Recuperar contraseña
 POST /auth/forgot-password    → Procesar recuperación
 GET  /auth/logout             → Cerrar sesión
 ```
@@ -122,16 +119,6 @@ GET /api/tickets              → API de tickets (JSON)
 - ✅ Decoradores de autorización corregidos
 - ✅ Documentación completa
 
-### 📁 Archivos Creados
-- `INDICE.md` - Índice de documentación
-- `RESUMEN_VISUAL.md` - Resumen visual
-- `QUICKSTART.md` - Guía de inicio
-- `RUTAS_MAPEO.md` - Mapeo de rutas
-- `ANALISIS_COMPLETO.md` - Análisis técnico
-- `DEBUG.md` - Guía de debugging
-- `init_database.sql` - Script de BD
-- `.env.example` - Plantilla de configuración
-
 ### 🔨 Archivos Modificados
 - `app/__init__.py` - Ruta de inicio
 - `app/plantillas/*.html` - Rutas y atributos
@@ -169,38 +156,17 @@ GET /api/tickets              → API de tickets (JSON)
 
 ### "Las rutas no funcionan"
 1. Verifica que estés usando `/auth/login` no `/login`
-2. Lee RUTAS_MAPEO.md para ver todas las rutas correctas
-
-## 📞 Soporte
-
-Para problemas específicos:
-
-1. **Revisa INDICE.md** - Índice de documentación
-2. **Revisa DEBUG.md** - Solución de problemas comunes
-3. **Busca en RUTAS_MAPEO.md** - Si es una ruta
-4. **Lee ANALISIS_COMPLETO.md** - Si quieres entender un cambio
-
-## 📊 Estadísticas del Proyecto
-
-| Métrica | Valor |
-|---------|-------|
-| Rutas totales | 15 |
-| APIs JSON | 3 |
-| Tablas de BD | 8 |
-| Usuarios de prueba | 2 |
-| Documentación | 6 archivos |
-| Líneas documentadas | 2000+ |
 
 ## 🎓 Próximos Pasos
 
 Después de que todo funcione:
 
-1. **Crear más usuarios** en la tabla
-2. **Subir artículos** desde el admin
-3. **Crear tickets** de préstamo
-4. **Implementar pagos** reales
-5. **Envío de emails** automáticos
-6. **Reportes** avanzados
+1. **Crear más usuarios** 
+2. **Subir artículos** 
+3. **Crear tickets**
+4. **Implementar pagos**
+5. **Envío de emails**
+6. **Reportes**
 
 ## 📝 Licencia
 
@@ -214,11 +180,8 @@ Este proyecto es de uso educativo/desarrollo.
 ✅ Base de datos        → FUNCIONAL
 ✅ Dashboard            → FUNCIONAL
 ✅ APIs JSON            → FUNCIONAL
-✅ Documentación        → COMPLETA
 ```
 
-**Última actualización:** 2026-05-01  
+**Última actualización:** 2026-05-11  
 **Versión:** 1.0  
 **Estado:** ✅ Listo para usar
-
-**👉 [Comienza por leer INDICE.md](INDICE.md)**
