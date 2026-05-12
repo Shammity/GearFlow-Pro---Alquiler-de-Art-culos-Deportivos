@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GearFlow Pro | Dashboard</title>
+    <link rel="shortcut icon" href="/estaticos/img/icon.png">
+    <link rel="icon" type="image/png" href="/estaticos/img/icon.png?v=2">
+    <link rel="stylesheet" href="/estaticos/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="dashboard-container">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+        <div class="logo-section">
+            <div class="logo-icon"><i class="fa-solid fa-dumbbell"></i></div>
+            <div class="logo-text">
+                <h2>GearFlow Pro</h2>
+                <span>v2.0 Beta</span>
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+            <ul>
+                <li class="nav-item active" data-view="view-dashboard">
+                    <i class="fas fa-th-large"></i><span>Dashboard</span>
+                </li>
+                <li class="nav-item" data-view="view-inventario">
+                    <i class="fas fa-box"></i><span>Inventario</span>
+                </li>
+                <li class="nav-item" data-view="view-tickets">
+                    <i class="fas fa-ticket-alt"></i><span>Tickets</span>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="user-section">
+            <div class="user-card">
+                <div class="user-avatar" id="user-avatar-initials">--</div>
+                <div class="user-info">
+                    <div class="user-name"  id="dashboard-user-name">Cargando...</div>
+                    <div class="user-email" id="dashboard-user-email">...</div>
+                </div>
+            </div>
+            <button id="btn-logout" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- ===== VIEW: DASHBOARD ===== -->
+        <section class="content-view active" id="view-dashboard">
+            <div class="view-header">
+                <h1>Dashboard</h1>
+                <p><i class="fas fa-wave-square"></i> Resumen general del sistema deportivo</p>
+            </div>
+
+            <!-- Stat Cards -->
+            <div class="stats-grid">
+
+                <!-- Total Activos -->
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Total Activos</span>
+                        <div class="stat-icon blue"><i class="fas fa-cube"></i></div>
+                    </div>
+                    <div class="stat-bottom">
+                        <div class="stat-number" id="stat-total">0</div>
+                        <span class="stat-sub up">
+                            <i class="fas fa-arrow-trend-up"></i>
+                            <span id="stat-total-costo">$0 COP</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Disponibles -->
+                <div class="stat-card green-tint">
+                    <div class="stat-top">
+                        <span class="stat-label">Disponibles</span>
+                        <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                    <div class="stat-bottom">
+                        <div class="stat-number green" id="stat-disponibles">0</div>
+                        <span class="stat-sub">
+                            <span id="stat-disponibles-pct">0%</span> del inventario
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Prestados -->
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Prestados</span>
+                        <div class="stat-icon indigo"><i class="fas fa-clock"></i></div>
+                    </div>
+                    <div class="stat-bottom">
+                        <div class="stat-number indigo" id="stat-prestados">0</div>
+                        <span class="stat-sub">
+                            <span id="stat-prestados-tickets">0</span> tickets activos
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Mantenimiento -->
+                <div class="stat-card orange-tint">
+                    <div class="stat-top">
+                        <span class="stat-label">Mantenimiento</span>
+                        <div class="stat-icon orange"><i class="fas fa-exclamation-circle"></i></div>
+                    </div>
+                    <div class="stat-bottom">
+                        <div class="stat-number orange" id="stat-mantenimiento">0</div>
+                        <span class="stat-sub">Requieren atención</span>
+                    </div>
+                </div>
+
+            </div><!-- /stats-grid -->
+
+            <!-- Últimos Préstamos -->
+            <div class="recent-card">
+                <div class="recent-card-header">
+                    <div class="recent-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Últimos Préstamos</h3>
+                </div>
+                <div class="activity-list" id="recent-tickets-list">
+                    <!-- Items generados por JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== VIEW: INVENTARIO ===== -->
+        <section class="content-view" id="view-inventario">
+            <div class="view-header flex-header">
+                <div>
+                    <h1>Inventario</h1>
+                    <p><i class="fas fa-box-open"></i> Gestión de artículos deportivos</p>
+                </div>
+                <button class="btn-dark-action" id="btn-open-modal-articulo">
+                    <i class="fas fa-plus"></i> Nuevo Artículo
+                </button>
+            </div>
+
+            <div class="table-card">
+                <div class="table-filter-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="inventory-search" placeholder="Buscar artículos...">
+                    </div>
+                    <!-- Custom dropdown estado -->
+                    <div class="custom-select-wrapper" id="inv-estado-wrapper">
+                        <button type="button" class="custom-select-btn" id="inv-estado-btn">
+                            <span id="inv-estado-label">Todos los estados</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="custom-select-dropdown" id="inv-estado-dropdown">
+                            <div class="custom-option active" data-value="todos">
+                                Todos los estados <i class="fas fa-check"></i>
+                            </div>
+                            <div class="custom-option" data-value="Disponible">
+                                <span class="dot green"></span> Disponible
+                            </div>
+                            <div class="custom-option" data-value="Prestado">
+                                <span class="dot blue"></span> Prestado
+                            </div>
+                            <div class="custom-option" data-value="Mantenimiento">
+                                <span class="dot orange"></span> Mantenimiento
+                            </div>
+                        </div>
+                        <!-- Select oculto para el JS existente -->
+                        <select id="filter-estado-inv" style="display:none">
+                            <option value="todos">Todos los estados</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Prestado">Prestado</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                        </select>
+                    </div>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Estado</th>
+                            <th>Costo</th>
+                            <th>Fecha de Compra</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== VIEW: TICKETS ===== -->
+        <section class="content-view" id="view-tickets">
+            <div class="view-header flex-header">
+                <div>
+                    <h1>Tickets de <span class="accent-text">Préstamo</span></h1>
+                    <p><i class="fas fa-ticket-alt" style="color:#F59E0B"></i> Gestión de préstamos de equipamiento</p>
+                </div>
+            </div>
+
+            <!-- Mini stats tickets -->
+            <div class="ticket-stats-row">
+                <div class="ticket-stat-card">
+                    <div class="ticket-stat-body">
+                        <span class="ticket-stat-label">Pendientes</span>
+                        <div class="ticket-stat-number orange" id="mini-pendientes">0</div>
+                    </div>
+                    <div class="ticket-stat-icon orange-bg"><i class="fas fa-hourglass-half"></i></div>
+                </div>
+                <div class="ticket-stat-card">
+                    <div class="ticket-stat-body">
+                        <span class="ticket-stat-label">En Progreso</span>
+                        <div class="ticket-stat-number blue" id="mini-progreso">0</div>
+                    </div>
+                    <div class="ticket-stat-icon blue-bg"><i class="fas fa-sync-alt"></i></div>
+                </div>
+                <div class="ticket-stat-card">
+                    <div class="ticket-stat-body">
+                        <span class="ticket-stat-label">Devueltos</span>
+                        <div class="ticket-stat-number green" id="mini-devueltos">0</div>
+                    </div>
+                    <div class="ticket-stat-icon green-bg"><i class="fas fa-check-square"></i></div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-filter-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="tickets-search" placeholder="Buscar por artículo o usuario...">
+                    </div>
+                    <!-- Custom dropdown estado tickets -->
+                    <div class="custom-select-wrapper" id="tick-estado-wrapper">
+                        <button type="button" class="custom-select-btn" id="tick-estado-btn">
+                            <span id="tick-estado-label">Todos los estados</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="custom-select-dropdown" id="tick-estado-dropdown">
+                            <div class="custom-option active" data-value="todos">
+                                Todos los estados <i class="fas fa-check"></i>
+                            </div>
+                            <div class="custom-option" data-value="Pendiente">
+                                <span class="dot orange"></span> Pendiente
+                            </div>
+                            <div class="custom-option" data-value="En Progreso">
+                                <span class="dot blue"></span> En Progreso
+                            </div>
+                            <div class="custom-option" data-value="Devuelto">
+                                <span class="dot green"></span> Devuelto
+                            </div>
+                        </div>
+                        <select id="filter-estado-tick" style="display:none">
+                            <option value="todos">Todos los estados</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="En Progreso">En Progreso</option>
+                            <option value="Devuelto">Devuelto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Artículo</th>
+                            <th>Estado</th>
+                            <th>Fecha Préstamo</th>
+                            <th>Fecha Devolución</th>
+                            <th>Observaciones</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tickets-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</div><!-- /dashboard-container -->
+
+<!-- ===== MODAL: ARTÍCULO (Nuevo / Editar) ===== -->
+<div id="modal-articulo" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-title">
+                <i class="fas fa-plus" id="modal-articulo-icon"></i>
+                <div>
+                    <h3 id="modal-title-text">Nuevo Artículo</h3>
+                    <p id="modal-title-sub">Añade un nuevo artículo al inventario deportivo</p>
+                </div>
+            </div>
+            <button class="close-x" id="btn-close-modal-articulo">&times;</button>
+        </div>
+        <form id="form-articulo" class="modal-body">
+
+            <!-- Nombre -->
+            <div class="form-group-modal">
+                <label><i class="fas fa-cube"></i> Nombre del Artículo</label>
+                <input type="text" id="articulo-nombre"
+                       placeholder="Ej: Balón de Fútbol Nike" required>
+            </div>
+
+            <!-- Categoría + Estado -->
+            <div class="form-row-2">
+                <div class="form-group-modal">
+                    <label><i class="fas fa-tag"></i> Categoría</label>
+                    <select id="articulo-categoria" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">
+                        <option value="">-- Selecciona una categoría --</option>
+                    </select>
+                </div>
+                <div class="form-group-modal">
+                    <label><i class="fas fa-circle"></i> Estado</label>
+                    <div class="custom-select-modal" id="modal-estado-wrapper">
+                        <button type="button" class="custom-select-btn" id="modal-estado-btn">
+                            <span class="dot green"></span>
+                            <span id="modal-estado-label">Disponible</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="custom-select-dropdown" id="modal-estado-dropdown">
+                            <div class="custom-option active" data-value="Disponible">
+                                <span class="dot green"></span> Disponible <i class="fas fa-check"></i>
+                            </div>
+                            <div class="custom-option" data-value="Prestado">
+                                <span class="dot blue"></span> Prestado
+                            </div>
+                            <div class="custom-option" data-value="Mantenimiento">
+                                <span class="dot orange"></span> Mantenimiento
+                            </div>
+                        </div>
+                        <select id="articulo-estado" style="display:none">
+                            <option value="Disponible">Disponible</option>
+                            <option value="Prestado">Prestado</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Precio Compra + Precio Alquiler -->
+            <div class="form-row-2">
+                <div class="form-group-modal">
+                    <label><i class="fas fa-dollar-sign"></i> Precio de Compra (COP)</label>
+                    <div class="input-prefix-wrap">
+                        <span class="prefix-sym">$</span>
+                        <input type="number" id="articulo-precio" value="0" required>
+                    </div>
+                </div>
+                <div class="form-group-modal">
+                    <label><i class="fas fa-dollar-sign"></i> Precio Alquiler/día (COP)</label>
+                    <div class="input-prefix-wrap">
+                        <span class="prefix-sym">$</span>
+                        <input type="number" id="articulo-precio-alquiler" value="0" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fecha de compra -->
+            <div class="form-group-modal">
+                <label><i class="fas fa-calendar-alt"></i> Fecha de Compra</label>
+                <input type="date" id="articulo-fecha-adquisicion">
+            </div>
+
+            <!-- Imagen -->
+            <div class="form-group-modal">
+                <label><i class="fas fa-image"></i> Imagen del Artículo</label>
+                <label for="articulo-imagen" class="file-input-label">
+                    <i class="fas fa-upload"></i>
+                    <span id="file-name-display">Examinar archivo</span>
+                </label>
+                <input type="file" id="articulo-imagen" accept="image/*">
+            </div>
+
+            <!-- Descripción -->
+            <div class="form-group-modal">
+                <label><i class="fas fa-align-left"></i> Descripción (Opcional)</label>
+                <textarea id="articulo-descripcion" placeholder="Ej: Marca, modelo, condición, etc." style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; min-height:60px;"></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" id="btn-cancel-modal">Cancelar</button>
+                <button type="submit" class="btn-submit" id="btn-save-articulo">
+                    <i class="fas fa-plus"></i> Crear Artículo
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ===== MODAL: TICKET DETALLE ===== -->
+<div id="modal-ticket" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-title">
+                <i class="fas fa-ticket-alt"></i>
+                <div>
+                    <h3>Detalle del Préstamo</h3>
+                    <p>Información del ticket de préstamo</p>
+                </div>
+            </div>
+            <button class="close-x" id="btn-close-modal-ticket">&times;</button>
+        </div>
+        <div class="modal-body" id="ticket-info-content"></div>
+        <div class="modal-actions" id="ticket-actions"></div>
+    </div>
+</div>
+
+<!-- ===== MODAL: NUEVO TICKET ===== -->
+<div id="modal-nuevo-ticket" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-title">
+                <i class="fas fa-plus"></i>
+                <div>
+                    <h3>Nuevo Ticket</h3>
+                    <p>Registra un nuevo préstamo de equipamiento</p>
+                </div>
+            </div>
+            <button class="close-x" id="btn-close-modal-nuevo-ticket">&times;</button>
+        </div>
+        <form id="form-nuevo-ticket" class="modal-body">
+            <div class="form-group-modal">
+                <label><i class="fas fa-user"></i> Usuario</label>
+                <input type="text" id="ticket-usuario" placeholder="Nombre del usuario" required>
+            </div>
+            <div class="form-group-modal">
+                <label><i class="fas fa-box"></i> Artículo</label>
+                <select id="ticket-articulo" required>
+                    <option value="">Seleccionar artículo...</option>
+                </select>
+            </div>
+            <div class="form-group-modal">
+                <label><i class="fas fa-calendar-alt"></i> Fecha de Préstamo</label>
+                <input type="date" id="ticket-fecha-prestamo">
+            </div>
+            <div class="form-group-modal">
+                <label><i class="fas fa-comment-alt"></i> Observaciones</label>
+                <input type="text" id="ticket-observaciones"
+                       placeholder="Ej: Torneo escolar, entrenamiento...">
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" id="btn-cancel-nuevo-ticket">Cancelar</button>
+                <button type="submit" class="btn-submit" id="btn-save-ticket">
+                    <i class="fas fa-plus"></i> Crear Ticket
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Mini Modal de Confirmación -->
+<div id="modal-confirmacion" class="mini-modal" style="display: none;">
+    <div class="mini-modal-content">
+        <div class="mini-modal-header">
+            <h3 id="modal-titulo">Confirmar acción</h3>
+            <button type="button" class="mini-modal-close" id="btn-close-confirmacion">&times;</button>
+        </div>
+        <div class="mini-modal-body">
+            <p id="modal-mensaje">¿Estás seguro de continuar?</p>
+        </div>
+        <div class="mini-modal-footer">
+            <button type="button" class="btn-cancel" id="btn-cancelar-confirmacion">Cancelar</button>
+            <button type="button" class="btn-submit" id="btn-confirmar-accion">Confirmar</button>
+        </div>
+    </div>
+</div>
+
+<script src="/estaticos/js/dashboard.js"></script>
+</body>
+</html>

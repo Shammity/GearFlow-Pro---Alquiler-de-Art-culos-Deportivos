@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GearFlow Pro | Sistema de Gestión Deportiva</title>
+    <meta name="description" content="Sistema de Tickets para Inventario">
+    <meta name="keywords" content="Tickets, Inventario, Sistema">
+    <meta name="author" content="Shanya Herrera Rubio">
+    <link rel="shortcut icon" href="/estaticos/img/icon.png">
+    <link rel="icon" type="image/png" href="/estaticos/img/icon.png?v=2">
+    <link rel="stylesheet" href="/estaticos/css/principal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="top-announcement">
+        <p>Alquiler verificado en Neiva, Huila - Calidad y Entrega Garantizada</p>
+    </div>
+    <nav class="app-nav">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">
+                    <span>GearFlow <strong>Pro</strong></span>
+                </a>
+                <ul class="main-menu">
+                    <li><a href="#inicio" class="active">Explorar</a></li>
+                    <li><a href="#como-funciona">Sistemas de Garantía</a></li>
+                    <li><a href="#soporte">Soporte</a></li>
+                </ul>
+                <div class="user-control-panel">
+                    <div class="guest-zone" id="guest-zone">
+                        <a href="/auth/login" class="btn-cta-small">Unirse ahora</a>
+                    </div>
+                    <div class="user-zone hidden" id="user-zone">
+                        <button class="action-btn" title="Carrito de Préstamo" id="btn-carrito">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="count" id="carrito-count">0</span>
+                        </button>
+                        
+                        <div class="vender-mode hidden" id="modo-propietario">
+                            <button class="btn-switch-role" id="btn-mode-propietario">Modo Propietario</button>
+                            <button class="btn-primary-pro hidden" id="btn-publicar-articulo">Publicar Artículo</button>
+                        </div>
+
+                        <div class="profile-pill" id="btn-profile">
+                            <span class="username" id="username-display">Usuario</span>
+                            <img id="user-avatar" src="https://ui-avatars.com/api/?name=Usuario&background=4F46E5&color=fff" alt="Perfil">
+                            
+                            <div id="profile-dropdown" class="profile-dropdown hidden">
+                                <ul>
+                                    <li id="menu-logout" class="text-danger"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="hero-premium">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Equípate como un profesional, <br> <span>paga por uso.</span></h1>
+                    <p>La forma inteligente de equiparte: Alquila, entrena y rinde.</p>
+                    <div class="action-group">
+                        <button id="btn-comenzar-alquilar" class="btn-secondary-pro">Comenzar a alquilar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="explorer-section">
+        <div class="container">
+            <div class="explorer-header">
+                <h2>Catálogo de Alto Rendimiento</h2>
+                <div class="search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="¿Qué deporte vas a practicar hoy?">
+                </div>
+            </div>
+            <div class="category-filters">
+                <button class="chip active">Todos</button>
+                <button class="chip">Fútbol</button>
+                <button class="chip">Tenis</button>
+                <button class="chip">Boxeo</button>
+                <button class="chip">Patinaje</button>
+                <button class="chip">Ciclismo</button>
+            </div>
+            <div class="grid-products" id="grid-articulos">
+                </div>
+        </div>
+    </section>
+    <section id="modal-carrito" class="cart-overlay hidden">
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h3>Carrito de Préstamo</h3>
+                <button id="cerrar-carrito" class="btn-close-cart">✕</button>
+            </div>
+            <div id="carrito-items" class="cart-body">
+                <p class="empty-msg">El carrito está vacío</p>
+            </div>
+            <div class="cart-footer">
+                <div class="total-row">
+                    <span>Total a pagar:</span>
+                    <span id="carrito-total">$0</span>
+                </div>
+                <button id="btn-procesar-carrito" class="btn-checkout">
+                    Pagar
+                </button>
+            </div>
+        </div>
+    </section>
+    <div id="modal-reservar" class="custom-modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reservar Artículo</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-reservar">
+                    <div class="form-group">
+                        <label>Fecha de Inicio</label>
+                        <input type="date" id="reserva-fecha-inicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cantidad de Días</label>
+                        <input type="number" id="reserva-dias" min="1" value="1" required>
+                    </div>
+                    <button type="submit" class="btn-primary-pro full-width">Confirmar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Éxito para Reserva -->
+    <div id="modal-exito" class="custom-modal hidden">
+        <div class="modal-content modal-success">
+            <div class="modal-header">
+                <h3>¡Reserva Exitosa!</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <p class="success-message" id="success-message">Ticket generado con éxito</p>
+                <p class="ticket-number" id="ticket-number"></p>
+                <button class="btn-primary-pro full-width" onclick="cerrarModalExito()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-pro">
+        <div class="container">
+            <div class="footer-top">
+                <div class="brand-info">
+                    <h3>GearFlow Pro</h3>
+                    <p>Elevando el deporte en Neiva a través del consumo colaborativo.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-col">
+                        <h4>Plataforma</h4>
+                        <a href="#">Catálogo</a>
+                        <a href="#">Garantías</a>
+                    </div>
+                    <div class="link-col">
+                        <h4>Nosotros</h4>
+                        <a href="#">Contacto</a>
+                        <a href="#">Sede Neiva</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <small>&copy; 2026 GearFlow Pro. Todos los derechos reservados.</small>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+<script src="/estaticos/js/app.js"></script>
+</body>
+</html>
